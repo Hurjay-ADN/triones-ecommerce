@@ -1,4 +1,4 @@
-<nav class="flex justify-between p-3 border-b items-center border-gray-200">
+<nav class="flex justify-between p-5 border-b items-center border-gray-200 w-11/12 m-auto">
     <div class=>
         <h2 class="font-semibold text-xl">Triones</h2>
     </div>
