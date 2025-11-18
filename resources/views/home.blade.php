@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Triones</title>
-</head>
-<body class="bg-gray-50">
-    @include('layouts.navbar')
+@extends('layouts.layout')
 
+@section('title')
+    Home Page
+@endsection
+
+@section('header')
+    @include('layouts.navbar')
+@endsection
+
+@section('main-content')
     <section class="w-11/12 p-5 m-auto">
         <div>
             <h2 class="font-semibold">Products</h2>
@@ -24,7 +23,4 @@
             <a href="" class="px-3 py-2 bg-white shadow-lg rounded-lg text-sm">Smart Home Devices</a>
         </div>
     </section>
-
-
-</body>
-</html>
+@endsection

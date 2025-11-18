@@ -11,21 +11,17 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::middleware('auth')->group(function (){
+
+Route::middleware('auth')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy'])->name('session.destroy');
 
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
 
-Route::middleware('guest')->group(function (){
+Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('auth.store');
 
     Route::get('/login', [SessionController::class, 'login'])->name('login');
     Route::post('/login', [SessionController::class, 'store'])->name('session.store');
 });
-
-
-
-
-
