@@ -1,12 +1,14 @@
-@extends('layouts.layout')
-
-@section('title')
-    Login Page
-@endsection
-
-@section('main-content')
-    <section>
-        <div class="flex justify-center items-center h-dvh">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite('resources/css/app.css')
+    <title>Login</title>
+</head>
+<body>
+    <div class="flex justify-center items-center h-dvh">
             <form action="{{ route('session.store') }}" class="border rounded border-gray-300 w-full lg:w-4/12 p-3"
                 method="POST">
                 @csrf
@@ -39,6 +41,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-    </section>
-@endsection
+    </div>
+</body>
+</html>
