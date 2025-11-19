@@ -7,7 +7,8 @@
                 <h1>Icon</h1>
             </div>
             <div>
-                <h2 class="text-white font-bold">Triones</h2>
+
+                <a class="text-white font-bold text-lg" href="{{ route('home') }}">Triones</a>
                 <p class="text-xs">Admin Panel</p>
             </div>
         </div>

@@ -6,28 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function product() {
+    public function product()
+    {
         return $this->belongsTo(Product::class);
     }
 
-    public function subTotal() {
-        
+    public function subTotal()
+    {
+
         $user = auth()->user();
 
         $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
         $subTotal = 0;
-        
-        foreach($cartItems as $item) {
+
+        foreach ($cartItems as $item) {
             $subTotal = $subTotal + $item->product->price * $item->quantity;
         }
         return $subTotal;
     }
 
-    public function total(){
+    public function total()
+    {
         return $this->subTotal() + $this->subTotal() * .12;
     }
 

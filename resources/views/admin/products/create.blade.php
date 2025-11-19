@@ -32,7 +32,8 @@
 
                 <div>
                     <label class="text-l mb-3 font-semibold" for="category">Category: </label>
-                    <select class="border border-gray-300 px-3 py-1 w-full" name="category_id" id="category">
+                    <select class="border border-gray-300 bg-[#142536] text-gray-200 px-3 py-1 w-full" name="category_id"
+                        id="category">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
