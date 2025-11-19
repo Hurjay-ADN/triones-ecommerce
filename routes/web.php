@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\SessionController;
 use App\Models\Product;
 
@@ -19,6 +20,16 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy'])->name('session.destroy');
+
+    Route::get('/carts', [CartController::class, 'index'])->name('carts.index');
+    Route::post('/carts/{product}', [CartController::class, 'addToCart'])->name('carts.store');
+
+
+
+
+    Route::post('/carts', [CartController::class, 'checkOut'])->name('carts.checkout');
+
+    
 
 });
 

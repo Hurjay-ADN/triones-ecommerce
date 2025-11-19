@@ -9,7 +9,8 @@
 @endsection
 
 @section('main-content')
-    <section>
+    <div>
+        <section>
         <div>
             <h2 class="font-semibold">Products</h2>
             <p>Browse our collection of tech products.</p>
@@ -27,29 +28,32 @@
     <section>
         <div class="grid grid-cols-5 gap-5">
             @foreach ($products as $product)
-                {{-- Card --}}
-                <div class="flex flex-col gap-1 border p-5">
-                    <div>
-                        <img width="100" src="{{ asset('storage/images/' . $product->image) }}" alt="Product Image">
-                    </div>
+            {{-- Card --}}
+            <div class="flex flex-col gap-1 border p-5">
+                <div>
+                    <img width="100" src="{{ asset('storage/images/' . $product->image) }}" alt="Product Image">
+                </div>
 
-                    <div>
-                        <h2>{{ $product->name }}</h2>
-                    </div>
+                <div>
+                    <h2>{{ $product->name }}</h2>
+                </div>
 
                     <div class="flex justify-between">
-                        <h2>{{ $product->price }}</h2>
-                        <h2>{{ $product->stock }}</h2>
-                    </div>
-
-                    <div>
-                        <form action="" method="POST">
-                            @csrf
-                            <button type="submit" name="add">Add to cart</button>
-                        </form>
-                    </div>
+                    <h2>{{ $product->price }}</h2>
+                    <h2>{{ $product->stock }}</h2>
                 </div>
+
+                <div>
+                    <form action="{{ route('carts.store', $product) }}" method="POST">
+                        @csrf 
+                        <button type="submit" name="add" class="">Add to cart</button>
+                    </form>
+                </div>
+            </div>
+                
             @endforeach
         </div>
     </section>
+    </div>
+    
 @endsection

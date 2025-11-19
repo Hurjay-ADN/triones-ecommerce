@@ -15,8 +15,16 @@
         <div class="flex flex-col justify-between h-screen">
             {{-- Navigation --}}
             <ul class="px-4 py-10 flex flex-col gap-2">
-                <li><a href="#" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Dashboard</a></li>
-                <li><a href="#" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Products</a></li>
+                <li>
+                    <a href="{{ route('admin.dashboard') }}" class="block px-2 py-2 rounded hover:bg-[#1e273c]">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.products.index') }}" class="block px-2 py-2 rounded hover:bg-[#1e273c]">
+                        Products
+                    </a>
+                </li>
                 <li><a href="#" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Inventory</a></li>
                 <li><a href="#" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Reports</a></li>
                 <li><a href="#" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Settings</a></li>

@@ -4,7 +4,7 @@
 
 @section('main-content')
 
-    <div class="bg-gradient-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 h-screen w-full">
+    <div class="bg-linear-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 h-screen w-full">
         <div class="p-3">
             <h2 class="font-semibold text-lg">Products</h2>
         </div>

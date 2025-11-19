@@ -9,10 +9,18 @@
 
     <div>
         @auth
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-4">
             <span>
                 Welcome, {{ auth()->user()->username }}
-            </span>    
+            </span>   
+            <div class="relative">
+                <a href="{{ route('carts.index') }}"><x-bi-cart-fill/> </a>
+                <span class="text-xs absolute -top-4 -right-2">
+                    {{ auth()->user()->carts()->count() === 0 ? ' ' : auth()->user()->carts()->count() }}
+                </span>
+            </div>
+            
+            
             <form action="{{ route('session.destroy') }}" method="POST">
                 @csrf
                 <button class="bg-red-600 hover:bg-red-800 px-3 py-1 text-white rounded">Logout</button>
