@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -91,4 +92,22 @@ class AdminController extends Controller
 
         return redirect()->route('admin.products.index');
     }
+
+    public function ordersIndex(){
+
+        $orders = Order::with('user')->with('items')->paginate(10);
+
+        // dd($orders);
+        return view('admin.orders.index', compact('orders'));
+    }
+
+    public function ordersUpdate(Request $request, Order $order){
+
+        $order->status = $request->input('status');
+
+        $order->update();
+
+       return to_route('admin.orders.index');
+    }
+
 }

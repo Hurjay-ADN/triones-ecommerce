@@ -39,8 +39,8 @@ class CartController extends Controller
     public function index(){
         $carts = Cart::with('product')->where('user_id', auth()->id())->get();
         // dd($carts);
+
         return view('carts.index', compact('carts'));
-    
     }
 
     public function checkOut(Request $request, Cart $cart){

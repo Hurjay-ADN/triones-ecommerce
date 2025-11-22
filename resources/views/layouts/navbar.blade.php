@@ -10,9 +10,12 @@
     <div>
         @auth
             <div class="flex items-center gap-4">
-                <span>
-                    Welcome, {{ auth()->user()->username }}
+                <span class="capitalize">
+                    {{ auth()->user()->username }}
                 </span>
+                <div>
+                    <a href="{{ route('orders.index') }}">Orders</a>
+                </div>
                 <div class="relative">
                     <a href="{{ route('carts.index') }}">c</a>
                     <span class="text-xs absolute -top-4 -right-2">

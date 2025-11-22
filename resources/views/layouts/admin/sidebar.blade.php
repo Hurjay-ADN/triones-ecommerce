@@ -26,9 +26,7 @@
                         Products
                     </a>
                 </li>
-                <li><a href="#" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Inventory</a></li>
-                <li><a href="#" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Reports</a></li>
-                <li><a href="#" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Settings</a></li>
+                <li><a href="{{ route('admin.orders.index') }}" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Orders</a></li>
             </ul>
 
             {{-- Logout --}}
