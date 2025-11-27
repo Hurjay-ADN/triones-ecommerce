@@ -3,9 +3,6 @@
         <a class="font-semibold text-xl" href="{{ route('home') }}">Triones</a>
     </div>
 
-    <div>
-        <input type="text" class="border px-3 py-1 rounded border-gray-300 w-90" placeholder="Search">
-    </div>
 
     <div>
         @auth

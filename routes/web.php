@@ -5,32 +5,24 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SessionController;
 use App\Models\Product;
 
-Route::get('/', function () {
-
-    $products = Product::all();
-    return view('home', compact('products'));
-
-
-})->name('home');
-
-
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy'])->name('session.destroy');
 
     Route::get('/carts', [CartController::class, 'index'])->name('carts.index');
     Route::post('/carts/{product}', [CartController::class, 'addToCart'])->name('carts.store');
+    Route::put('/carts/{cart}', [CartController::class, 'updateQuantity'])->name('carts.update');
 
     Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
-
-
     Route::post('/carts', [CartController::class, 'checkOut'])->name('carts.checkout');
 
-    
+    Route::delete('/carts/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
 
 });
 
@@ -49,10 +41,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/products/index', [AdminController::class, 'productsIndex'])->name('admin.products.index');
     Route::get('/admin/products/create', [AdminController::class, 'productsCreate'])->name('admin.products.create');
     Route::post('/admin/products', [AdminController::class, 'productsStore'])->name('admin.products.store');
+    Route::get('/admin/products/{product}', [AdminController::class, 'productsShow'])->name('admin.products.show');
+
     Route::get('/admin/products/{product}/edit', [AdminController::class, 'productsEdit'])->name('admin.products.edit');
     Route::put('/admin/products/{product}', [AdminController::class, 'productsUpdate'])->name('admin.products.update');
     Route::delete('/admin/products/{product}', [AdminController::class, 'productsDestroy'])->name('admin.products.destory');
-    
    
     Route::get('/admin/orders', [AdminController::class, 'ordersIndex'])->name('admin.orders.index');
     Route::put('/admin/orders/{order}', [AdminController::class, 'ordersUpdate'])->name('admin.orders.update');

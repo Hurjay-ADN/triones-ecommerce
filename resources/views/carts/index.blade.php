@@ -23,9 +23,14 @@
                             <td class="py-2">{{ $cart->id }}</td>
                             <td class="py-2">{{ $cart->product->name }}</td>
                             <td class="py-2 flex justify-center items-center gap-2">
-                                <button class="bg-gray-700 text-white rounded px-2 py-1">-</button>
-                                <span class="bg-gray-800 rounded px-3 py-1">{{ $cart->quantity }}</span>
-                                <button class="bg-gray-700 text-white rounded px-2 py-1">+</button>
+                                <form action="{{ route('carts.update', $cart) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button name="updateQuantity" value=0 class="bg-gray-700 text-white rounded px-2 py-1">-</button>
+                                    <span class="bg-gray-800 rounded px-3 py-1">{{ $cart->quantity }}</span>
+                                    <button name="updateQuantity" value=1 class="bg-gray-700 text-white rounded px-2 py-1">+</button>
+                                </form>
+                              
                             </td>
                             @php
                                 $subTotal = $cart->product->price * $cart->quantity;
@@ -34,7 +39,7 @@
                             <td class="py-2 text-right text-orange-400 font-bold">&#8369; {{ number_format($subTotal, 2) }}
                             </td>
                             <td class="py-2 text-center">
-                                <form action="" method="post" class="inline">
+                                <form action="{{ route('carts.destroy', $cart) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" name="btn-delete"
@@ -64,6 +69,21 @@
                         </span>
                     @enderror
                 </div>
+
+                 {{-- Order Payment --}}
+                <div class="bg-[#223044] p-4 rounded-lg mb-4">
+                    <div class="flex flex-col gap-3 ">
+                        <label class="text-base font-semibold" for="Payment Option">Payment Option</label>
+                        <select class="text-sm -m-1" name="paymentOption">
+                            <option class="bg-[#223044]" value="cod">Cash on Delivery</option>
+                            <option disabled class="bg-[#223044]" value="cash">Gcash</option>
+                            <option disabled class="bg-[#223044]" value="cash">Paypal</option>
+                        </select>
+                    </div>
+                   
+                
+                </div>
+
                 {{-- Summary --}}
                 <div class="bg-[#223044] p-4 rounded-lg mb-4">
                     <h2 class="text-base font-semibold mb-4">Order Summary</h2>

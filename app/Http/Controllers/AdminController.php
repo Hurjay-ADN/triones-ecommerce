@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
@@ -11,13 +12,32 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
+        $order = Order::all();
+        $product = Product::all();
 
-        return view('admin.dashboard');
+
+        $totalUsers = User::where('role', 'user')->count();
+        $totalOrders = $order->count();
+        $totalSales = $order->sum('total');
+        $totalProducts = $product->count();
+        $ordersPending = $order->where('status', 'pending')->count();
+        $lowStocks = $product->where('stock', '<=', value:10)->count();
+
+
+        return view('admin.dashboard', 
+        compact(
+'totalUsers',
+'totalOrders', 
+         'totalSales', 
+         'totalProducts', 
+         'ordersPending', 
+         'lowStocks')
+        );
     }
 
     public function productsIndex()
     {
-        $products = Product::paginate(10);
+        $products = Product::paginate(perPage: 5);
         return view('admin.products.index', compact('products'));
     }
 
@@ -51,6 +71,11 @@ class AdminController extends Controller
 
         // return
         return redirect()->route('admin.products.index');
+    }
+
+    public function productsShow(Product $product){
+     
+        return view('admin.products.show', compact('product'));
     }
 
     public function productsEdit(Product $product)
@@ -95,7 +120,7 @@ class AdminController extends Controller
     public function ordersIndex()
     {
 
-        $orders = Order::with('user')->with('items')->paginate(10);
+        $orders = Order::with('user')->with('items')->paginate(perPage: 10);
 
         // dd($orders);
         return view('admin.orders.index', compact('orders'));

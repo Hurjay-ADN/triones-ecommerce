@@ -30,6 +30,9 @@ class SessionController extends Controller
 
             return redirect()->route('home');
         }
+        return back()->onlyInput('username')->withErrors([
+            'username' => 'Credential is incorrect'
+        ]);
     }
 
     public function destroy(Request $request) {

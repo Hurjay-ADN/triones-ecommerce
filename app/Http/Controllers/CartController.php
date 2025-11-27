@@ -44,23 +44,42 @@ class CartController extends Controller
         return view('carts.index', compact('carts'));
     }
 
+
+    public function updateQuantity(Request $request, Cart $cart){
+    
+        if ($request->input('updateQuantity'))
+             $cart->quantity++;
+        else
+            if( $cart->quantity > 1)
+                $cart->quantity--;
+           
+    
+        $cart->save();
+
+        return redirect()->route('carts.index');
+    }
+
+
+
+
     public function checkOut(Request $request, Cart $cart)
     {
-
-        $validated_address = $request->validate([
-            'shipping_address' => ['required', 'string', 'max:255']
-        ]);
-
         $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
         $total = $cart->total();
 
+        if($cartItems->isEmpty()){
+            return to_route('carts.index');
+        }
 
+        $request->validate([
+            'shipping_address' => ['required', 'string', 'max:255']
+        ]);
 
         $order = Order::create(
             [
                 'user_id' => auth()->id(),
                 'total' => $total,
-                'shipping_address' => $validated_address
+                'shipping_address' => $request->input('shipping_address')
             ]
         );
 
@@ -76,5 +95,11 @@ class CartController extends Controller
         $userCart = Cart::where('user_id', auth()->id())->delete();
 
         return redirect()->route('carts.index')->with('success', 'Order successfully created.');
+    }
+
+    public function destroy(Cart $cart){
+        $cart->delete();
+
+        return to_route('carts.index');
     }
 }

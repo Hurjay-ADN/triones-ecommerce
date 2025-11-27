@@ -53,10 +53,10 @@
 
                 <div>
                     <label class="text-l mb-3 font-semibold" for="category_id">Category: </label>
-                    <select class="border border-gray-300 bg-[#142536] text-gray-200 px-3 py-1 w-full" name="category_id"
+                    <select class="cursor-pointer border border-gray-300 bg-[#142536] text-gray-200 px-3 py-1 w-full" name="category_id"
                         id="category">
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option class="cursor-pointer" value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                     @error('category_id')
@@ -68,7 +68,7 @@
 
                 <div>
                     <label class="text-l mb-3 font-semibold" for="image">Image</label>
-                    <input class="border border-gray-300 px-3 py-1 w-full" type="file" name="image" id="image">
+                    <input class="cursor-pointer border border-gray-300 px-3 py-1 w-full" type="file" name="image" id="image">
                     @error('image')
                         <span class="text-red-400 text-sm">
                             {{ $message }}

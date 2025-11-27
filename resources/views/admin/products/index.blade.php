@@ -47,7 +47,7 @@
                                 </span>
                             </td>
                             <td class="py-3 px-4 flex gap-2 items-center">
-                                <a href="#"
+                                <a href="{{ route('admin.products.show', $product) }}"
                                     class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">View</a>
                                 <a href="{{ route('admin.products.edit', $product) }}"
                                     class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded">Edit</a>
