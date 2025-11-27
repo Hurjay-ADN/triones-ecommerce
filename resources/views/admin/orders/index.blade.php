@@ -9,7 +9,7 @@
             <div>
                 <h2 class="font-semibold text-lg">Orders</h2>
             </div>
-        
+
         </div>
         <div class="bg-[#23314c] rounded-xl p-4 shadow-lg">
             <table class="w-full text-sm">
@@ -25,13 +25,13 @@
 
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @foreach ($orders as $order)
                         <tr>
                             <td>{{ $order->id }}</td>
-                            
-                            @foreach ($order->items as $item )
+
+                            @foreach ($order->items as $item)
                                 <td>{{ $item->product_name }}</td>
                             @endforeach
                             <td>{{ $order->shipping_address }}</td>
@@ -42,18 +42,22 @@
                                 @method('PUT')
                                 <td>
                                     <select class="border-gray-700 bg-[#23314c]" name="status">
-                                        
-                                    <option class="text-white " value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                                    <option class="text-white" value="order_shipped" {{ $order->status === 'order_shipped' ? 'selected' : '' }}>Order Shipped</option>
-                                    <option class="text-white" value="delivered" {{ $order->status === 'delivered' ? 'selected' : '' }}>Delivered</option>
-                                </select>
+
+                                        <option class="text-white " value="pending"
+                                            {{ $order->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                                        <option class="text-white" value="order_shipped"
+                                            {{ $order->status === 'order_shipped' ? 'selected' : '' }}>Order Shipped
+                                        </option>
+                                        <option class="text-white" value="delivered"
+                                            {{ $order->status === 'delivered' ? 'selected' : '' }}>Delivered</option>
+                                    </select>
                                 </td>
-                                
+
                                 <td>
                                     <button type="submit">Update</button>
                                 </td>
                             </form>
-                            
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -61,23 +65,3 @@
         </div>
     </div>
 @endsection
-
-
-
-   {{-- <tbody>
-            {{ $n = 1 }}
-            @foreach ($orders as $order)
-                <tr>
-                @foreach ($order->items as $item)
-                    <td>{{ $n}}</td>
-                    <td>{{ $item->product_name }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>{{ $order->total }}</td>
-                    <td>{{ $order->status }}</td>
-                    <td>View</td>
-                @endforeach
-                </tr>
-                {{ $n++ }}
-            @endforeach
-        </tbody> --}}

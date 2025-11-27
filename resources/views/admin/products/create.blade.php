@@ -13,36 +13,67 @@
                 <div>
                     <label class="text-l mb-3 font-semibold" for="name">Name: </label>
                     <input class="border border-gray-300 px-3 py-1 w-full "type="text" name="name" id="name">
+                    @error('name')
+                        <span class="text-red-400 text-sm">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
                 <div>
                     <label class="text-l mb-3 font-semibold" for="description">Description: </label>
                     <textarea class="border border-gray-300 px-3 py-1 w-full" name="description" id="description"></textarea>
+                    @error('description')
+                        <span class="text-red-400 text-sm">
+                            {{ $message }}
+                        </span>
+                    @enderror
+
                 </div>
 
                 <div>
                     <label class="text-l mb-3 font-semibold" for="price">Price: </label>
                     <input class="border border-gray-300 px-3 py-1 w-full" type="number" name="price" id="price">
+                    @error('price')
+                        <span class="text-red-400 text-sm">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
                 <div>
                     <label class="text-l mb-3 font-semibold" for="stock">Stock: </label>
                     <input class="border border-gray-300 px-3 py-1 w-full" type="number" name="stock" id="stock">
+                    @error('stock')
+                        <span class="text-red-400 text-sm">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
                 <div>
-                    <label class="text-l mb-3 font-semibold" for="category">Category: </label>
+                    <label class="text-l mb-3 font-semibold" for="category_id">Category: </label>
                     <select class="border border-gray-300 bg-[#142536] text-gray-200 px-3 py-1 w-full" name="category_id"
                         id="category">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
+                    @error('category_id')
+                        <span class="text-red-400 text-sm">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
                 <div>
                     <label class="text-l mb-3 font-semibold" for="image">Image</label>
                     <input class="border border-gray-300 px-3 py-1 w-full" type="file" name="image" id="image">
+                    @error('image')
+                        <span class="text-red-400 text-sm">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
                 <div><button class="block my-3 w-full rounded py-1 px-3 bg-[#f54c00] text-white cursor-pointer"

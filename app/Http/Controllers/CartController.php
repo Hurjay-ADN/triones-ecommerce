@@ -10,22 +10,22 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function addToCart(Product $product){
+    public function addToCart(Product $product)
+    {
         $cartItem = Cart::where('user_id', auth()->id())->where('product_id', $product->id)->first();
 
-        if($product->stock < 1){
+        if ($product->stock < 1) {
             return;
         }
 
-        if (empty($cartItem)){
+        if (empty($cartItem)) {
             Cart::create([
                 'user_id' => auth()->id(),
                 'product_id' => $product->id,
                 'quantity' => 1
             ]);
+        } else {
 
-        }else{
-            
             $cartItem->quantity = $cartItem->quantity + 1;
             $cartItem->save();
         }
@@ -33,34 +33,38 @@ class CartController extends Controller
         $product->stock = $product->stock - 1;
         $product->save();
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Cart successfully added.');
     }
 
-    public function index(){
-        $carts = Cart::with('product')->where('user_id', auth()->id())->get();
+    public function index()
+    {
+        $carts = Cart::with('product')->where('user_id', auth()->id())->paginate(10);
         // dd($carts);
 
         return view('carts.index', compact('carts'));
     }
 
-    public function checkOut(Request $request, Cart $cart){
+    public function checkOut(Request $request, Cart $cart)
+    {
 
-        // $shippingAddress = $request->validate([
-        //     'shipping_address' => 'required'
-        // ]);
+        $validated_address = $request->validate([
+            'shipping_address' => ['required', 'string', 'max:255']
+        ]);
 
         $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
-        
         $total = $cart->total();
-        
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'total' => $total,
-            'shipping_address' => $request->input('shipping_address')
+
+
+
+        $order = Order::create(
+            [
+                'user_id' => auth()->id(),
+                'total' => $total,
+                'shipping_address' => $validated_address
             ]
         );
-        
-        foreach ($cartItems as $item){
+
+        foreach ($cartItems as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item->product->id,
@@ -68,12 +72,9 @@ class CartController extends Controller
                 'quantity' => $item->quantity,
                 'product_name' => $item->product->name,
             ]);
-
         }
         $userCart = Cart::where('user_id', auth()->id())->delete();
 
-        return redirect()->route('carts.index');
+        return redirect()->route('carts.index')->with('success', 'Order successfully created.');
     }
-
-    
 }

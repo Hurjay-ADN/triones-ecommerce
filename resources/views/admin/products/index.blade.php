@@ -14,6 +14,7 @@
                 + Add Product
             </a>
         </div>
+
         <div class="bg-[#23314c] rounded-xl p-4 shadow-lg">
             <table class="w-full text-sm">
                 <thead>
@@ -61,7 +62,13 @@
                         </tr>
                     @endforeach
                 </tbody>
+
             </table>
+
+            <div class="mt-5">
+                {{ $products->links() }}
+            </div>
+
         </div>
     </div>
 @endsection

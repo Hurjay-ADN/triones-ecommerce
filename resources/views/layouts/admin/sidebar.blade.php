@@ -1,5 +1,5 @@
 <section>
-    <div class="bg-[#101828] text-[#a0a5af] h-screen w-56 flex flex-col">
+    <div class="bg-[#101828] text-[#a0a5af] h-screen flex flex-col">
 
         {{-- Header --}}
         <div class="flex items-center gap-3 px-4 py-5 border-b border-white/10">
@@ -26,7 +26,8 @@
                         Products
                     </a>
                 </li>
-                <li><a href="{{ route('admin.orders.index') }}" class="block px-2 py-2 rounded hover:bg-[#1e273c]">Orders</a></li>
+                <li><a href="{{ route('admin.orders.index') }}"
+                        class="block px-2 py-2 rounded hover:bg-[#1e273c]">Orders</a></li>
             </ul>
 
             {{-- Logout --}}

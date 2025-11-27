@@ -57,7 +57,12 @@
                 <div class="mb-5">
                     <label for="shipping_address" class="block mb-2 font-semibold">Shipping Address</label>
                     <textarea class="border border-gray-800 rounded w-full p-2 bg-[#223044] text-gray-50" name="shipping_address"
-                        id="shipping_address"></textarea>
+                        id="shipping_address" placeholder="Enter your address here"></textarea>
+                    @error('shipping_address')
+                        <span class="text-red-400 text-sm">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
                 {{-- Summary --}}
                 <div class="bg-[#223044] p-4 rounded-lg mb-4">

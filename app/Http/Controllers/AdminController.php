@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function productsIndex()
     {
-        $products = Product::all();
+        $products = Product::paginate(10);
         return view('admin.products.index', compact('products'));
     }
 
@@ -37,7 +37,6 @@ class AdminController extends Controller
             'stock' => ['required', 'numeric'],
             'category_id' => ['required'],
             'image' => ['required'],
-
 
         ]);
 
@@ -80,7 +79,7 @@ class AdminController extends Controller
 
         $product->update($validatedData);
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.index')->with('success', 'Product successfully created.');
     }
 
 
@@ -93,7 +92,8 @@ class AdminController extends Controller
         return redirect()->route('admin.products.index');
     }
 
-    public function ordersIndex(){
+    public function ordersIndex()
+    {
 
         $orders = Order::with('user')->with('items')->paginate(10);
 
@@ -101,13 +101,13 @@ class AdminController extends Controller
         return view('admin.orders.index', compact('orders'));
     }
 
-    public function ordersUpdate(Request $request, Order $order){
+    public function ordersUpdate(Request $request, Order $order)
+    {
 
         $order->status = $request->input('status');
 
         $order->update();
 
-       return to_route('admin.orders.index');
+        return to_route('admin.orders.index');
     }
-
 }
