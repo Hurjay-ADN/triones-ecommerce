@@ -13,29 +13,51 @@
         <section>
             <div>
                 <div>
+
                     <div class="flex justify-between mt-5">
-                        <h2 class="font-semibold">Products</h2>
-                        <form action="" method="GET">
-                            <input type="text" name="search" class="border px-3 py-1 rounded border-gray-300 w-90" placeholder="Search">
+                        <div>
+                            <h2 class="text-lg font-semibold">Products</h2>
+                            <p class="text-sm text-gray-400">Browse our collection of tech products.</p>
+                        </div>
+
+                        <form action="" method="GET" class="flex items-center gap-2">
+                            <input type="text" name="search"
+                                class="border px-3 py-2 rounded border-gray-300 w-80 focus:outline-none" placeholder="Search">
+
                             <button type="submit"
-                                class="bg-orange-500 hover:bg-orange-600 text-white rounded px-3 py-1">
-                                Search
+                                class="bg-orange-500 hover:bg-orange-600 text-white rounded px-3 py-2 flex items-center justify-center">
+                                <x-heroicon-o-magnifying-glass
+                                    class="w-5 h-5 text-white cursor-pointer hover:text-gray-100" />
                             </button>
                         </form>
                     </div>
+
+
                 </div>
-                <p>Browse our collection of tech products.</p>
+
             </div>
-            
+
             <div class="mt-5 flex gap-3">
-                
-                <form action="" method="GET"> 
-                    <button  class="px-3 py-2 bg-gray-400 shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === " " ? "bg-gray-600" : ""}}" name="category" value="" type="submit">All Categories</button>
-                    <button  class="px-3 py-2 bg-gray-400 shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === "1" ? "bg-gray-600" : ""}}" name="category" value=1 type="submit">Computer & Laptops</button>
-                    <button  class="px-3 py-2 bg-gray-400 shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === "2" ? "bg-gray-600" : ""}}" name="category" value=2 type="submit">Audio Devices</button>
-                    <button  class="px-3 py-2 bg-gray-400 shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === "3" ? "bg-gray-600" : ""}}" name="category" value=3 type="submit">PC Peripherals</button>
-                    <button  class="px-3 py-2 bg-gray-400 shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === "4" ? "bg-gray-600" : ""}}" name="category" value=4 type="submit">PC Peripherals</button>
-                    <button  class="px-3 py-2 bg-gray-400 shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === "5" ? "bg-gray-600" : ""}}" name="category" value=5 type="submit">PC Smart Home Device</button>
+
+                <form action="" method="GET">
+                    <button
+                        class="px-3 py-2 bg-gray-400 hover:bg-gray-700  shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === ' ' ? 'bg-gray-700' : '' }}"
+                        name="category" value="" type="submit">All Categories</button>
+                    <button
+                        class="px-3 py-2 bg-gray-400 hover:bg-gray-700  shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === '1' ? 'bg-gray-700' : '' }}"
+                        name="category" value=1 type="submit">Computer & Laptops</button>
+                    <button
+                        class="px-3 py-2 bg-gray-400 hover:bg-gray-700  shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === '2' ? 'bg-gray-700' : '' }}"
+                        name="category" value=2 type="submit">Audio Devices</button>
+                    <button
+                        class="px-3 py-2 bg-gray-400 hover:bg-gray-700  shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === '3' ? 'bg-gray-700' : '' }}"
+                        name="category" value=3 type="submit">PC Peripherals</button>
+                    <button
+                        class="px-3 py-2 bg-gray-400 hover:bg-gray-700  shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === '4' ? 'bg-gray-700' : '' }}"
+                        name="category" value=4 type="submit">PC Peripherals</button>
+                    <button
+                        class="px-3 py-2 bg-gray-400 hover:bg-gray-700  shadow-lg rounded-lg text-sm cursor-pointer {{ request('category') === '5' ? 'bg-gray-700' : '' }}"
+                        name="category" value=5 type="submit">PC Smart Home Device</button>
                 </form>
             </div>
         </section>
@@ -45,13 +67,13 @@
             @if ($products->isEmpty())
                 <p>No products</p>
             @endif
-        
+
             <div class="grid grid-cols-4 gap-6 mt-5">
                 @foreach ($products as $product)
                     <div class="bg-gray-900 rounded-xl shadow-md border border-gray-800 flex flex-col items-center p-4">
                         <img src="{{ asset('storage/images/' . $product->image) }}" alt="Product Image"
                             class="w-40 h-28 object-cover rounded-lg mb-3">
-                        <div class="text-white font-medium text-base mb-1">
+                        <div class="text-white text-pretty font-medium text-base mb-1">
                             {{ $product->name }}
                         </div>
 

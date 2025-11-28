@@ -19,11 +19,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/carts/{product}', [CartController::class, 'addToCart'])->name('carts.store');
     Route::put('/carts/{cart}', [CartController::class, 'updateQuantity'])->name('carts.update');
 
-    Route::get('/orders',[OrderController::class,'index'])->name('orders.index');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/carts', [CartController::class, 'checkOut'])->name('carts.checkout');
 
     Route::delete('/carts/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
-
 });
 
 Route::middleware('guest')->group(function () {
@@ -35,21 +34,19 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/admin/products/index', [AdminController::class, 'productsIndex'])->name('admin.products.index');
-    Route::get('/admin/products/create', [AdminController::class, 'productsCreate'])->name('admin.products.create');
-    Route::post('/admin/products', [AdminController::class, 'productsStore'])->name('admin.products.store');
-    Route::get('/admin/products/{product}', [AdminController::class, 'productsShow'])->name('admin.products.show');
+Route::prefix('admin')
+    ->middleware(['auth', 'admin'])
+    ->controller(AdminController::class)
+    ->group(function () {
 
-    Route::get('/admin/products/{product}/edit', [AdminController::class, 'productsEdit'])->name('admin.products.edit');
-    Route::put('/admin/products/{product}', [AdminController::class, 'productsUpdate'])->name('admin.products.update');
-    Route::delete('/admin/products/{product}', [AdminController::class, 'productsDestroy'])->name('admin.products.destory');
-   
-    Route::get('/admin/orders', [AdminController::class, 'ordersIndex'])->name('admin.orders.index');
-    Route::put('/admin/orders/{order}', [AdminController::class, 'ordersUpdate'])->name('admin.orders.update');
-
-
-
-});
+        Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
+        Route::get('/products/index', 'productsIndex')->name('admin.products.index');
+        Route::get('/products/create', 'productsCreate')->name('admin.products.create');
+        Route::post('/products', 'productsStore')->name('admin.products.store');
+        Route::get('/products/{product}', 'productsShow')->name('admin.products.show');
+        Route::get('/products/{product}/edit', 'productsEdit')->name('admin.products.edit');
+        Route::put('/products/{product}', 'productsUpdate')->name('admin.products.update');
+        Route::delete('/products/{product}', 'productsDestroy')->name('admin.products.destory');
+        Route::get('/orders', 'ordersIndex')->name('admin.orders.index');
+        Route::put('/orders/{order}', 'ordersUpdate')->name('admin.orders.update');
+    });

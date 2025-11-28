@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminController
 {
     public function dashboard()
     {
@@ -21,17 +21,19 @@ class AdminController extends Controller
         $totalSales = $order->sum('total');
         $totalProducts = $product->count();
         $ordersPending = $order->where('status', 'pending')->count();
-        $lowStocks = $product->where('stock', '<=', value:10)->count();
+        $lowStocks = $product->where('stock', '<=', 20)->count();
 
 
-        return view('admin.dashboard', 
-        compact(
-'totalUsers',
-'totalOrders', 
-         'totalSales', 
-         'totalProducts', 
-         'ordersPending', 
-         'lowStocks')
+        return view(
+            'admin.dashboard',
+            compact(
+                'totalUsers',
+                'totalOrders',
+                'totalSales',
+                'totalProducts',
+                'ordersPending',
+                'lowStocks'
+            )
         );
     }
 
@@ -73,8 +75,9 @@ class AdminController extends Controller
         return redirect()->route('admin.products.index');
     }
 
-    public function productsShow(Product $product){
-     
+    public function productsShow(Product $product)
+    {
+
         return view('admin.products.show', compact('product'));
     }
 
@@ -120,7 +123,7 @@ class AdminController extends Controller
     public function ordersIndex()
     {
 
-        $orders = Order::with('user')->with('items')->paginate(perPage: 10);
+        $orders = Order::with('user')->with('items')->paginate(10);
 
         // dd($orders);
         return view('admin.orders.index', compact('orders'));

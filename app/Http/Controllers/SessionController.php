@@ -5,26 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SessionController extends Controller
+class SessionController
 {
-    public function login() {
+    public function login()
+    {
         return view('auth.login');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required', 'min:8']
         ]);
 
-        if (Auth::attempt($credentials)){
+        if (Auth::attempt($credentials)) {
 
             $user = Auth::user();
 
             $request->session()->regenerateToken();
 
-            if ($user->role === 'admin'){
+            if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             }
 
@@ -35,7 +37,8 @@ class SessionController extends Controller
         ]);
     }
 
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class CartController
 {
     public function addToCart(Product $product)
     {
@@ -45,15 +45,16 @@ class CartController extends Controller
     }
 
 
-    public function updateQuantity(Request $request, Cart $cart){
-    
+    public function updateQuantity(Request $request, Cart $cart)
+    {
+
         if ($request->input('updateQuantity'))
-             $cart->quantity++;
+            $cart->quantity++;
         else
-            if( $cart->quantity > 1)
-                $cart->quantity--;
-           
-    
+            if ($cart->quantity > 1)
+            $cart->quantity--;
+
+
         $cart->save();
 
         return redirect()->route('carts.index');
@@ -67,7 +68,7 @@ class CartController extends Controller
         $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
         $total = $cart->total();
 
-        if($cartItems->isEmpty()){
+        if ($cartItems->isEmpty()) {
             return to_route('carts.index');
         }
 
@@ -97,7 +98,8 @@ class CartController extends Controller
         return redirect()->route('carts.index')->with('success', 'Order successfully created.');
     }
 
-    public function destroy(Cart $cart){
+    public function destroy(Cart $cart)
+    {
         $cart->delete();
 
         return to_route('carts.index');

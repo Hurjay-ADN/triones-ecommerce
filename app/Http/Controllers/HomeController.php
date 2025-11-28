@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController
 {
-    public function home(Request $request){
+    public function home(Request $request)
+    {
         $query = Product::query();
-        
+
         $search = $request->input('search');
         $category = $request->input('category');
 
-        if (filled($category)){
-            $query->where('category_id',$category);
+        if (filled($category)) {
+            $query->where('category_id', $category);
         }
 
-        if (filled($search)){
+        if (filled($search)) {
             $query->where('name', 'LIKE', "%$search%");
         }
 

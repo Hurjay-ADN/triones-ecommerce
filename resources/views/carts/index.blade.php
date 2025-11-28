@@ -26,11 +26,13 @@
                                 <form action="{{ route('carts.update', $cart) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <button name="updateQuantity" value=0 class="bg-gray-700 text-white rounded px-2 py-1">-</button>
+                                    <button name="updateQuantity" value=0
+                                        class="bg-gray-700 hover:bg-gray-300 text-white hover:text-black rounded px-2 py-1 cursor-pointer">-</button>
                                     <span class="bg-gray-800 rounded px-3 py-1">{{ $cart->quantity }}</span>
-                                    <button name="updateQuantity" value=1 class="bg-gray-700 text-white rounded px-2 py-1">+</button>
+                                    <button name="updateQuantity" value=1
+                                        class="bg-gray-700 hover:bg-gray-300 text-white hover:text-black rounded px-2 py-1 cursor-pointer">+</button>
                                 </form>
-                              
+
                             </td>
                             @php
                                 $subTotal = $cart->product->price * $cart->quantity;
@@ -44,7 +46,10 @@
                                     @method('DELETE')
                                     <button type="submit" name="btn-delete"
                                         class="text-red-500 px-3 py-1 rounded hover:text-red-700">
-                                        <span>Delete</span>
+                                        <span>
+                                            <x-heroicon-o-trash
+                                                class="w-6 h-6 text-red-500  hover:text-red-700 cursor-pointer" />
+                                        </span>
                                     </button>
                                 </form>
                             </td>
@@ -70,7 +75,7 @@
                     @enderror
                 </div>
 
-                 {{-- Order Payment --}}
+                {{-- Order Payment --}}
                 <div class="bg-[#223044] p-4 rounded-lg mb-4">
                     <div class="flex flex-col gap-3 ">
                         <label class="text-base font-semibold" for="Payment Option">Payment Option</label>
@@ -80,8 +85,8 @@
                             <option disabled class="bg-[#223044]" value="cash">Paypal</option>
                         </select>
                     </div>
-                   
-                
+
+
                 </div>
 
                 {{-- Summary --}}
@@ -110,7 +115,7 @@
                     class="bg-orange-500 hover:bg-orange-600 w-full text-white rounded py-2 font-semibold flex items-center justify-center gap-2">
                     Checkout
                 </button>
-                <p class="text-gray-400 text-xs text-center mt-5">Secure checkout powered by OMSIM</p>
+                <p class="text-gray-400 text-xs text-center mt-5">Secure checkout powered by Triones.</p>
             </form>
         </div>
     </div>

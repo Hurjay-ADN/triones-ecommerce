@@ -4,42 +4,43 @@
 @section('title', 'Products')
 
 @section('main-content')
-    <div class="bg-linear-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 min-h-screen w-full p-8">
+    <div class="p-8">
+
         <div class="mb-4 flex justify-between items-center">
             <div>
                 <h2 class="font-semibold text-lg">Orders</h2>
             </div>
-        
+
         </div>
         <div class="bg-[#23314c] rounded-xl p-4 shadow-lg">
+
+
             <table class="w-full text-sm">
                 <thead>
-                    <tr class="text-gray-300 border-b border-gray-700">
-                        <th class="py-3 px-4 text-left">#</th>
-                        <th class="py-3 px-4 text-left">Product Name</th>
-                        <th class="py-3 px-4 text-left">Price</th>
-                        <th class="py-3 px-4 text-left">Quantity</th>
-                        <th class="py-3 px-4 text-left">Total</th>
-                        <th class="py-3 px-4 text-left">Status</th>
-                        <th class="py-3 px-4 text-left">Action</th>
+                    <tr class="text-gray-300 border-b border-gray-700 text-center">
+                        <th class="py-3 px-4">#</th>
+                        <th class="py-3 px-4">Product Name</th>
+                        <th class="py-3 px-4">Price</th>
+                        <th class="py-3 px-4">Quantity</th>
+                        <th class="py-3 px-4">Total</th>
+                        <th class="py-3 px-4">Status</th>
 
                     </tr>
                 </thead>
-                 <tbody>
-                    {{ $n = 1 }}
+                <tbody>
+                    <span class="hidden">{{ $n = 1 }}</span>
                     @foreach ($orders as $order)
-                      <tr>
-                        @foreach ($order->items as $item)
-                            <td>{{ $n}}</td>
-                            <td>{{ $item->product_name }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ $item->quantity }}</td>
-                            <td>{{ $order->total }}</td>
-                            <td>{{ $order->status }}</td>
-                            <td>View</td>
-                        @endforeach
-                      </tr>
-                      {{ $n++ }}
+                        <tr class="border-b border-gray-700 text-center last:border-0">
+                            @foreach ($order->items as $item)
+                                <td class="py-3 px-4 align-top">{{ $n }}</td>
+                                <td class="py-3 px-4 align-top">{{ $item->product_name }}</td>
+                                <td class="py-3 px-4 align-top"> ₱ {{ number_format($item->price, 2) }}</td>
+                                <td class="py-3 px-4 align-top">{{ $item->quantity }}</td>
+                                <td class="py-3 px-4 align-top"> ₱ {{ number_format($order->total, 2) }}</td>
+                                <td class="py-3 px-4 align-top">{{ Str::headline($order->status) }}</td>
+                            @endforeach
+                        </tr>
+                        <span class="hidden">{{ $n++ }}</span>
                     @endforeach
                 </tbody>
             </table>
