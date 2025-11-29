@@ -15,7 +15,7 @@
     <body class="font-[Poppins] w-full">
 
         <div class="flex">
-            <div class="w-2/12">
+            <div class="w-50 xl:w-2/12">
                 @include('layouts.admin.sidebar')
             </div>
 

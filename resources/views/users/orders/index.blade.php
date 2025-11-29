@@ -12,7 +12,7 @@
             </div>
 
         </div>
-        <div class="bg-[#23314c] rounded-xl p-4 shadow-lg">
+        <div class="bg-[#23314c] rounded-xl p-4 shadow-lg overflow-x-auto">
 
 
             <table class="w-full text-sm">

@@ -1,28 +1,32 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <div class="flex flex-row gap-8 mt-10 justify-center items-start">
+    <div class="flex flex-col lg:flex-row gap-4 mt-10 justify-center items-start">
+
         {{-- Cart Table --}}
-        <div class="bg-[#232a39] text-gray-50 rounded-xl shadow-lg p-6 w-2/3">
+        <div class="bg-[#232a39] text-gray-50 rounded-xl shadow-lg p-6 w-full lg:w-9/12 overflow-x-auto lg:overflow-hidden">
             <h2 class="font-semibold text-lg mb-2">My Cart</h2>
             <p class="text-gray-300 text-xs mb-5">Review your items before checkout</p>
-            <table class="w-full text-sm">
+
+            {{-- TABLE --}}
+            <table class="text-sm min-w-max  md:w-full ">
                 <thead>
                     <tr class="text-gray-300 border-b border-gray-700">
-                        <th class="py-2 text-left">ID</th>
-                        <th class="py-2 text-left">Product Name</th>
-                        <th class="py-2 text-center">Quantity</th>
-                        <th class="py-2 text-right">Price</th>
-                        <th class="py-2 text-right">Subtotal</th>
-                        <th class="py-2 text-center">Actions</th>
+                        <th class="py-2">ID</th>
+                        <th class="py-2">Product Name</th>
+                        <th class="py-2">Quantity</th>
+                        <th class="py-2">Price</th>
+                        <th class="py-2">Subtotal</th>
+                        <th class="py-2">Actions</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     @foreach ($carts as $cart)
                         <tr class="border-b border-gray-800 hover:bg-[#223044] transition">
-                            <td class="py-2">{{ $cart->id }}</td>
-                            <td class="py-2">{{ $cart->product->name }}</td>
-                            <td class="py-2 flex justify-center items-center gap-2">
+                            <td class="py-2 px-2">{{ $cart->id }}</td>
+                            <td class="py-2 px-2">{{ $cart->product->name }}</td>
+                            <td class="py-2 px-2 flex justify-center items-center gap-2">
                                 <form action="{{ route('carts.update', $cart) }}" method="POST">
                                     @csrf
                                     @method('PUT')
@@ -37,10 +41,10 @@
                             @php
                                 $subTotal = $cart->product->price * $cart->quantity;
                             @endphp
-                            <td class="py-2 text-right">&#8369; {{ number_format($cart->product->price, 2) }}</td>
-                            <td class="py-2 text-right text-orange-400 font-bold">&#8369; {{ number_format($subTotal, 2) }}
+                            <td class="py-2 text-right px-2">&#8369; {{ number_format($cart->product->price, 2) }}</td>
+                            <td class="py-2 text-right px-2 text-orange-400 font-bold">&#8369; {{ number_format($subTotal, 2) }}
                             </td>
-                            <td class="py-2 text-center">
+                            <td class="py-2 px-2 text-center">
                                 <form action="{{ route('carts.destroy', $cart) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -60,7 +64,7 @@
         </div>
 
         {{-- Order Summary --}}
-        <div class="bg-[#232a39] text-gray-50 rounded-xl shadow-lg p-8 w-1/3 flex flex-col">
+        <div class="bg-[#232a39] text-gray-50 rounded-xl shadow-lg p-8 w-full lg:w-4/12 flex flex-col">
             <form action="{{ route('carts.checkout') }}" method="post">
                 @csrf
                 {{-- Address --}}

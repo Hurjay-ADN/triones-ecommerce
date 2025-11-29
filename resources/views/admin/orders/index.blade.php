@@ -3,15 +3,17 @@
 @section('title', 'Orders')
 
 @section('main-content')
-    <div class="bg-linear-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 min-h-screen w-full p-8">
+    <div class="bg-linear-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 min-h-screen p-8">
         <div class="mb-4 flex justify-between items-center">
             <div>
                 <h2 class="font-semibold text-2xl p-5">Orders</h2>
             </div>
         </div>
+        {{--==============================TABLE==============================--}}
 
-        <div class="bg-[#23314c] rounded-xl p-4 shadow-lg">
-            <table class="w-full text-sm text-center">
+        <div class="bg-[#23314c] rounded-xl p-4 shadow-lg w-full overflow-x-auto">
+
+            <table class="text-sm text-center min-w-max md:w-full">
                 <thead>
                     <tr class="text-gray-300 border-b border-gray-700 text-center">
                         <th class="py-3 px-4">Order Id</th>

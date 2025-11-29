@@ -13,7 +13,7 @@
             rel="stylesheet">
 
     <body
-        class="font-[Poppins] px-10 bg-no-repeat bg-cover bg-linear-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 min-h-screen max-w-[1400px] m-auto">
+        class="font-[Poppins] px-4 bg-no-repeat bg-cover bg-linear-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 min-h-screen max-w-[1400px] m-auto">
         @include('layouts.navbar')
 
         <main>

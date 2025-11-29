@@ -4,18 +4,21 @@
 
 @section('main-content')
     <div class="bg-linear-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 min-h-screen w-full p-8">
-        <div class="mb-4 flex justify-between items-center">
+        
+        <div class="mb-4 flex flex-col-reverse md:flex-row  xl:flex-row md:justify-between md:items-center">
             <div>
-                <h2 class="font-semibold text-white text-lg">Products</h2>
+                <h2 class="font-semibold text-white xl:text-lg mt-2">Products</h2>
                 <p class="text-gray-400 text-sm">Manage your product catalog</p>
             </div>
+
+            {{-- Button --}}
             <a href="{{ route('admin.products.create') }}"
-                class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded font-semibold shadow">
+                class="bg-orange-500 hover:bg-orange-600 text-white text-center px-1 py-2 w-40 xl:px-4 xl:py-2 rounded font-semibold shadow">
                 + Add Product
             </a>
         </div>
 
-        <div class="bg-[#23314c] rounded-xl p-4 shadow-lg">
+        <div class="bg-[#23314c] rounded-xl p-4 shadow-lg overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
                     <tr class="text-gray-300 border-b text-center border-gray-700">

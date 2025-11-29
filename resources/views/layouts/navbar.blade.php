@@ -1,4 +1,4 @@
-<nav class="flex justify-between border-b items-center border-gray-200 py-5">
+<nav class="flex justify-between border-b items-center border-gray-600 py-5">
     <div>
         <a class="font-semibold text-xl hover:text-orange-600" href="{{ route('home') }}">Triones</a>
     </div>
@@ -7,7 +7,7 @@
     <div>
         @auth
             <div class="flex items-center gap-4">
-                <span class="capitalize text-lg  hover:text-orange-600">
+                <span class="hidden md:block capitalize text-lg  hover:text-orange-600">
                     Welcome, {{ auth()->user()->username }}
                 </span>
                 <div>
@@ -36,7 +36,7 @@
         @endauth
         @guest
             <a href="{{ route('login') }}"
-                class="bg-emerald-500 hover:bg-emerald-600 text-white text-lg font-semibold px-4 py-1 rounded cursor-pointer">
+                class="bg-orange-500 hover:bg-orange-700 text-white text-lg font-semibold px-4 py-1 rounded cursor-pointer">
                 Login
             </a>
         @endguest
