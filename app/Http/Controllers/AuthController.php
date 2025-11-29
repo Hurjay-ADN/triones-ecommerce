@@ -6,14 +6,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class AuthController
 {
-    public function showRegistrationForm() {
+    public function showRegistrationForm()
+    {
         return view('auth.register');
     }
 
-    public function register(Request $request) {
-        
+    public function register(Request $request)
+    {
+
         $validated = $request->validate([
             'username' => ['required', 'min:5', 'string', 'unique:users'],
             'email' => ['required', 'email', 'unique:users'],
@@ -26,7 +28,8 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-    public function login() {
+    public function login()
+    {
         return view('auth.login');
     }
 }

@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class OrderController
 {
-    public function index(Order $order){
+    public function index(Order $order)
+    {
 
         // $user = auth()->user();
         // $orders = $user->orders;

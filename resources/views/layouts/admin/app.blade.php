@@ -19,7 +19,7 @@
                 @include('layouts.admin.sidebar')
             </div>
 
-            <main class="w-10/12 flex-1">
+            <main class="w-10/12">
                 @yield('main-content')
             </main>
         </div>
