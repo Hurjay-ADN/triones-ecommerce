@@ -6,10 +6,11 @@
     <div class="bg-linear-to-br from-[#1f2937] via-[#2d3748] to-[#c2410c] text-gray-50 min-h-screen p-8">
         <div class="mb-4 flex justify-between items-center">
             <div>
-                <h2 class="font-semibold text-2xl p-5">Orders</h2>
+                <h2 class="font-semibold text-2xl py-2">Orders</h2>
+                <p class="text-gray-400">Track orders</h2>
             </div>
         </div>
-        {{--==============================TABLE==============================--}}
+        {{-- ==============================TABLE============================== --}}
 
         <div class="bg-[#23314c] rounded-xl p-4 shadow-lg w-full overflow-x-auto">
 
@@ -72,6 +73,7 @@
                                 <button type="submit" class="px-3 py-1 rounded bg-emerald-600 text-white text-xs">
                                     Update
                                 </button>
+
                                 </form>
                             </td>
                         </tr>
