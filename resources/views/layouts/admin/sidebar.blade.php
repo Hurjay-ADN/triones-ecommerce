@@ -2,15 +2,12 @@
     <div class="bg-[#101828] text-[#a0a5af] h-screen flex flex-col">
 
         {{-- Header --}}
-        <div class="flex items-center gap-3 px-4 py-5 border-b border-white/10">
-            <div>
-                <h1>Icon</h1>
-            </div>
-            <div>
+        <div class=" p-5 border-b border-white/10">
 
-                <a class="text-white font-bold text-lg" href="{{ route('admin.dashboard') }}">Triones</a>
-                <p class="text-xs">Admin Panel</p>
-            </div>
+            <a class="text-white font-bold text-xl hover:text-orange-400"
+                href="{{ route('admin.dashboard') }}">Triones</a>
+            <p class="text-xs">Admin Panel</p>
+
         </div>
 
         <div class="flex flex-col justify-between h-screen">
@@ -40,8 +37,8 @@
                 <button
                     class="block w-full text-center border border-red-400 text-red-400 font-semibold px-4 py-2 rounded hover:bg-red-200 transition cursor-pointer ">Logout</button>
             </form>
-            
+
         </div>
-      
+
     </div>
 </section>
